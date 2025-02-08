@@ -7,6 +7,7 @@ import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/U
 
 contract BoxV2 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
     uint256 internal value;
+    // If we want to add more storage variables, we must add them after `value`
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {

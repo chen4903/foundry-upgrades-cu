@@ -6,7 +6,6 @@ import {DeployBox} from "../script/DeployBox.s.sol";
 import {UpgradeBox} from "../script/UpgradeBox.s.sol";
 import {Test, console} from "forge-std/Test.sol";
 import {StdCheats} from "forge-std/StdCheats.sol";
-import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import {BoxV1} from "../src/BoxV1.sol";
 import {BoxV2} from "../src/BoxV2.sol";
 
@@ -39,7 +38,7 @@ contract DeployAndUpgradeTest is StdCheats, Test {
         BoxV2 box2 = new BoxV2();
 
         vm.prank(BoxV1(proxyAddress).owner());
-        BoxV1(proxyAddress).transferOwnership(msg.sender);
+        BoxV1(proxyAddress).transferOwnership(msg.sender); // User transfers ownership to oneself
 
         address proxy = upgradeBox.upgradeBox(proxyAddress, address(box2));
 

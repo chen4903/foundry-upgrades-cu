@@ -14,7 +14,7 @@ contract DeployBox is Script {
     function deployBox() public returns (address) {
         vm.startBroadcast();
         BoxV1 box = new BoxV1();
-        ERC1967Proxy proxy = new ERC1967Proxy(address(box), "");
+        ERC1967Proxy proxy = new ERC1967Proxy(address(box), ""); // The content of the second parameter will be delegated to the address of the first parameter
         BoxV1(address(proxy)).initialize();
         vm.stopBroadcast();
         return address(proxy);
